@@ -18,7 +18,7 @@ public class Main {
                     "\"name\": \"John\"" +
                 "}," +
                 "{" +
-                    "\"phone\": 15099999999," +
+                    "\"phone\": 15087654321," +
                     "\"name\": \"Tom\"" +
                 "}" +
             "]" +
@@ -28,14 +28,22 @@ public class Main {
         TestData obj = gson.fromJson(json, TestData.class);
         System.out.println("year: " + obj.getYear());
         System.out.println("mesasge: " + obj.getMessage());
-        System.out.println("countries: ");
-        for (String str : obj.getCountries()) {
-            System.out.println("  " + str);
+        if (obj.getCountries() == null) {
+            System.out.println("countries is null");
+        } else {
+            System.out.println("countries: ");
+            for (String str : obj.getCountries()) {
+                System.out.println("  " + str);
+            }
         }
-        System.out.println("contacts: ");
-        for (Contact data : obj.getContacts()) {
-            System.out.println("  phone: " + data.getPhone());
-            System.out.println("  name: " + data.getName());
+        if (obj.getContacts() == null) {
+            System.out.println("contacs is null");
+        } else {
+            System.out.println("contacts: ");
+            for (Contact data : obj.getContacts()) {
+                System.out.println("  phone: " + data.getPhone());
+                System.out.println("  name: " + data.getName());
+            }
         }
         return;
     }
