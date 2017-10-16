@@ -5,30 +5,67 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String json = "{\"number\": 12, \"message\": \"hello world\", \"list\": [\"John\", \"Jack\"]}";
+        String json = "{" +
+            "\"year\": 2017," +
+            "\"message\": \"Hello world\"," +
+            "\"countries\": [" +
+                "\"America\"," +
+                "\"China\"" +
+            "]," +
+            "\"contacts\": [" +
+                "{" +
+                    "\"phone\": 13912345678," +
+                    "\"name\": \"John\"" +
+                "}," +
+                "{" +
+                    "\"phone\": 15099999999," +
+                    "\"name\": \"Tom\"" +
+                "}" +
+            "]" +
+        "}";
+        System.out.println(json);
         Gson gson = new Gson();
-        TestGson obj = gson.fromJson(json, TestGson.class);
-        System.out.println("number: " + obj.getNumber());
+        TestData obj = gson.fromJson(json, TestData.class);
+        System.out.println("year: " + obj.getYear());
         System.out.println("mesasge: " + obj.getMessage());
-        System.out.println("list: ");
-        for (String str : obj.getList()) {
-            System.out.println("    " + str);
+        System.out.println("countries: ");
+        for (String str : obj.getCountries()) {
+            System.out.println("  " + str);
+        }
+        System.out.println("contacts: ");
+        for (Contact data : obj.getContacts()) {
+            System.out.println("  phone: " + data.getPhone());
+            System.out.println("  name: " + data.getName());
         }
         return;
     }
 }
 
-class TestGson {
-    private int number;
+class TestData {
+    private int year;
     private String message;
-    List<String> list;
-    public int getNumber() {
-        return number;
+    List<String> countries;
+    List<Contact> contacts;
+    public int getYear() {
+        return year;
     }
     public String getMessage() {
         return message;
     }
-    public List<String> getList() {
-        return list;
+    public List<String> getCountries() {
+        return countries;
+    }
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+}
+class Contact {
+    private long phone;
+    private String name;
+    public long getPhone() {
+        return phone;
+    }
+    public String getName() {
+        return name;
     }
 }
