@@ -2,11 +2,13 @@ package test;
 
 import com.google.gson.Gson;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         String json = "{" +
             "\"year\": 2017," +
+            "\"month\": 12," +
             "\"message\": \"Hello world\"," +
             "\"countries\": [" +
                 "\"America\"," +
@@ -27,6 +29,7 @@ public class Main {
         Gson gson = new Gson();
         TestData obj = gson.fromJson(json, TestData.class);
         System.out.println("year: " + obj.getYear());
+        System.out.println("month: " + obj.getMonth());
         System.out.println("mesasge: " + obj.getMessage());
         if (obj.getCountries() == null) {
             System.out.println("countries is null");
@@ -51,11 +54,15 @@ public class Main {
 
 class TestData {
     private int year;
+    private Integer month;
     private String message;
     List<String> countries;
-    List<Contact> contacts;
+    List<Contact> contacts = new ArrayList<>();
     public int getYear() {
         return year;
+    }
+    public Integer getMonth() {
+        return month;
     }
     public String getMessage() {
         return message;
